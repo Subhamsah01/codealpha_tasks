@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Calculator</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    
+    
+    <main class="calculator">
+      
+
+
+    <section class="display" aria-live="polite">
+      <div class="expression" id="expression">&nbsp;</div>
+      <div class="result" id="result">0</div>
+    </section>
+
+
+    <section class="keys" role="group" aria-label="Calculator keys">
+
+      <button type="button" class="key key--util" data-action="clear">C</button>
+      <button type="button" class="key key--util" data-action="backspace" aria-label="Backspace">⌫</button>
+      <button type="button" class="key key--util" data-action="percent">%</button>
+      <button type="button" class="key key--op" data-action="operator" data-op="/">÷</button>
+
+      <button type="button" class="key key--num" data-action="number" data-num="7">7</button>
+      <button type="button" class="key key--num" data-action="number" data-num="8">8</button>
+      <button type="button" class="key key--num" data-action="number" data-num="9">9</button>
+      <button type="button" class="key key--op" data-action="operator" data-op="*">×</button>
+
+      <button type="button" class="key key--num" data-action="number" data-num="4">4</button>
+      <button type="button" class="key key--num" data-action="number" data-num="5">5</button>
+      <button type="button" class="key key--num" data-action="number" data-num="6">6</button>
+      <button type="button" class="key key--op" data-action="operator" data-op="-">−</button>
+
+      <button type="button" class="key key--num" data-action="number" data-num="1">1</button>
+      <button type="button" class="key key--num" data-action="number" data-num="2">2</button>
+      <button type="button" class="key key--num" data-action="number" data-num="3">3</button>
+      <button type="button" class="key key--op" data-action="operator" data-op="+">+</button>
+
+      <button type="button" class="key key--num key--wide" data-action="number" data-num="0">0</button>
+      <button type="button" class="key key--num" data-action="decimal">.</button>
+      <button type="button" class="key key--equals" data-action="equals">=</button>
+
+    </section>
+
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
