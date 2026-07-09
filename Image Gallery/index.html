@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Professional Image Gallery</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <div class="eyebrow">
+            Professional Image Gallery
+        </div>
+
+        <h1>
+            Photo Gallery
+        </h1>
+
+        <p>
+            Organize, browse, and manage your images with category filters, image previews,
+            customizable effects, and a responsive lightbox experience.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         TOP TOOLBAR
+    ========================== -->
+
+    <div class="bar">
+
+        <div class="cats" id="cats"></div>
+
+        <div class="right-controls">
+
+            <div class="count" id="count"></div>
+
+            <button class="btn-upload" id="addBtn">
+
+                <svg viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2">
+
+                    <path d="M12 5v14M5 12h14" />
+
+                </svg>
+
+                Add Photos
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         GALLERY
+    ========================== -->
+
+    <main class="gallery" id="gallery"></main>
+
+    <p class="empty-state" id="emptyState">
+        No photos available in this category.
+    </p>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+        Professional Image Gallery • Built with HTML, CSS & JavaScript
+    </footer>
+
+
+    <!-- =========================
+         UPLOAD MODAL
+    ========================== -->
+
+    <div class="modal-overlay" id="uploadModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <h3>Upload Images</h3>
+
+                <button class="modal-close-btn" id="modalCloseBtn">
+                    ✕
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="dropzone" id="dropzone">
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept="image/*"
+                        multiple
+                        hidden>
+
+                    <div class="dropzone-icon">
+                        ⬆
+                    </div>
+
+                    <p>
+                        Drag & Drop images here or
+                        <span class="browse-link">Browse Files</span>
+                    </p>
+
+                    <span class="hint">
+                        Supported Formats: JPG • PNG • WEBP
+                    </span>
+
+                </div>
+
+                <div class="pending-grid" id="pendingGrid"></div>
+
+                <div class="modal-category-row">
+
+                    <label for="modalCategorySelect">
+                        Category
+                    </label>
+
+                    <select id="modalCategorySelect"></select>
+
+                    <input
+                        type="text"
+                        id="newCategoryInput"
+                        placeholder="Enter new category"
+                        style="display:none;">
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn-secondary" id="modalCancelBtn">
+                    Cancel
+                </button>
+
+                <button class="btn-upload"
+                    id="modalConfirmBtn"
+                    disabled>
+
+                    Upload Images
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         CREATE CATEGORY MODAL
+    ========================== -->
+
+    <div class="modal-overlay" id="categoryModal">
+
+        <div class="modal" style="max-width:400px;">
+
+            <div class="modal-header">
+
+                <h3>Create New Category</h3>
+
+                <button class="modal-close-btn" id="categoryModalCloseBtn">
+                    ✕
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <label class="field-label" for="categoryNameInput">
+                    Category Name
+                </label>
+
+                <input
+                    type="text"
+                    id="categoryNameInput"
+                    placeholder="Example: Nature, Travel, Wildlife"
+                    maxlength="30">
+
+                <p
+                    class="field-error"
+                    id="categoryError"
+                    style="display:none;">
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn-secondary" id="categoryCancelBtn">
+                    Cancel
+                </button>
+
+                <button class="btn-upload" id="categoryConfirmBtn">
+                    Create Category
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         LIGHTBOX
+    ========================== -->
+
+    <div class="lightbox" id="lightbox">
+
+        <div
+            class="lb-close"
+            id="lbClose"
+            title="Close (Esc)">
+            ✕
+        </div>
+
+        <div class="lb-stage">
+
+            <div
+                class="lb-nav lb-prev"
+                id="lbPrev"
+                title="Previous Image">
+
+                ‹
+
+            </div>
+
+            <div class="lb-img-wrap" id="lbImgWrap">
+
+                <img
+                    class="lb-img"
+                    id="lbImg"
+                    src=""
+                    alt="Gallery Image">
+
+            </div>
+
+            <div
+                class="lb-nav lb-next"
+                id="lbNext"
+                title="Next Image">
+
+                ›
+
+            </div>
+
+            <div class="lb-counter" id="lbCounter"></div>
+
+        </div>
+
+        <div class="lb-caption">
+
+            <div class="idx" id="lbIndexLabel"></div>
+
+            <h3 id="lbTitle"></h3>
+
+            <span id="lbCat"></span>
+
+        </div>
+
+        <div class="lb-filters" id="lbFilters"></div>
+
+        <div class="lb-controls">
+
+            <button
+                class="lb-zoom-btn"
+                id="zoomOut"
+                title="Zoom Out">
+
+                −
+
+            </button>
+
+            <span class="lb-zoom-level" id="zoomLevel">
+                100%
+            </span>
+
+            <button
+                class="lb-zoom-btn"
+                id="zoomIn"
+                title="Zoom In">
+
+                +
+
+            </button>
+
+            <button
+                class="lb-reset"
+                id="zoomReset">
+
+                Reset
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
